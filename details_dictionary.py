@@ -13,3 +13,4 @@ print(dic1)
     
 for i in dic1:
     print(dic1[i])
+print("...",dic1)
