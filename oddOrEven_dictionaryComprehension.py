@@ -1,13 +1,11 @@
-d={i:"true" if i%2==0 else "false" for i in range(1,10)}
+# d={i:"true" if i%2==0 else "false" for i in range(1,10)}
+# print(d)
+
+
+
+
+d={i:i%2==0 for i in range(1,10)}
 print(d)
-
-
-
-
-
-
-
-
 
 
 
