@@ -4,18 +4,22 @@ while True:
     print("1.Registstation\n2.Login\n3.Exit")
     n=int(input("Enter your choice: "))
     if(n==1):
+        f=0
         details={"Username":"","Password":""}
         print("\nREGISTRATION:")
         u_name=input("Username: ")
         for i in d:
             if(d[i]["Username"]==u_name):
                 print("Already Exists!")
-                u_name=input("Try another username: ")
-        pas=input("Password: ")
-        details["Username"]=u_name
-        details["Password"]=pas
-        d[id]=details
-        id+=1
+                f=1
+                # u_name=input("Try another username: ")
+        if(f==0):
+            pas=input("Password: ")
+            details["Username"]=u_name
+            details["Password"]=pas
+            d[id]=details
+            id+=1
+            print("Registered Successfully..")
     elif(n==2):
         val=0
         print("\nLOGIN:")
@@ -33,6 +37,4 @@ while True:
         break
     else:
         print("Invalid Choice!")
-
-
-
+        

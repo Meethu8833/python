@@ -53,11 +53,19 @@
 # num.insert(3,32)
 # print("after insertion: ",num)
 
-prmie=[2,3,5]
-print("List1:",prmie)
-even=[4,6,8]
-print("lsit 2: ",even)
-prmie.extend(even)
-print("List after append: ",prmie)
+# prmie=[2,3,5]
+# print("List1:",prmie)
+# even=[4,6,8]
+# print("lsit 2: ",even)
+# prmie.extend(even)
+# print("List after append: ",prmie)
 
+# a=input("enter: ")
+# a=a.upper()
+# print(a)
+
+m_l=[1,2,"hi","heo"]
+m_l[1]="hello"
+del m_l[2]
+print(m_l)
 
