@@ -64,8 +64,7 @@
 # a=a.upper()
 # print(a)
 
-m_l=[1,2,"hi","heo"]
-m_l[1]="hello"
-del m_l[2]
-print(m_l)
-
+# m_l=[1,2,"hi","heo"]
+# m_l[1]="hello"
+# del m_l[2]
+# print(m_l)

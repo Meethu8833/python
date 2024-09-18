@@ -7,7 +7,6 @@ for i in a:
     n=int(i)
     sum=sum+(n**l)
 
-# print(sum)
 if(a1==sum):
     print(a1,"is an armstrong number")
 else:
