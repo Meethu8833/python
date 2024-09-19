@@ -107,6 +107,8 @@ def search_book():
             print("Quantity:",i[3])
     if val==0:
         print("No book found!")
+
+
 user_details=[]
 def registration():
     u=[]
@@ -148,7 +150,7 @@ def login():
             if l_name==i[0] and l_pas==i[1]:
                 val=1
                 while True:
-                    print("1.Display All Books\n2.Search Book\n3.Exit")
+                    print("\n1.Display All Books\n2.Search Book\n3.Exit")
                     ch1=int(input("Enter your choice: "))
                     if ch1==1:
                         display_books()
@@ -162,9 +164,9 @@ def login():
         if val==0:
             print("Invalid Username or password!")
 
-def user():
-    print("\nUSER MENU:")
+def user():    
     while True:
+        print("\nUSER MENU:")
         print("1.Registration\n2.Login\n3.Exit")
         ch1=int(input("Enter your choice: "))
         if ch1==1:
@@ -177,7 +179,7 @@ def user():
         else:
             print("Invalid choice!")
 
-admin_details=["admin","123"]
+admin_details=["mee","111"]
 while True:
     print("MAIN MENU:")
     print("1.Admin\n2.User\n3.Exit")
@@ -187,6 +189,7 @@ while True:
     elif ch==2:
         user()
     elif ch==3:
+        print("Exited From main menu!")
         break
     else:
         print("Invalid choice!")
