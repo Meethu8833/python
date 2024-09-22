@@ -1,6 +1,6 @@
 vowel_list=[]
 
-def rev_vowels():
+def rev_vowels(s):
     for i in s:
         if i in "AEIOUaeiou":
             vowel_list.append(i)
@@ -18,4 +18,4 @@ def rev_vowels():
     print(string)
 
 s=input("Enter a string: ")
-rev_vowels()
+rev_vowels(s)
