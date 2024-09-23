@@ -7,6 +7,7 @@ def add_room():
     l=[]
     global count
     no=count
+    print("Room ID:",count)
     type=input("Enter the type of room(single,double,suite): ")
     if type not in ["single","double","suite"]:
         print("Invalid type!")
@@ -56,12 +57,15 @@ def remove_room():
     if val==0:
         print("Room Not Found!!")
 def view_reservations():
-    for i in reservation:
-        print("Room No:",i[2])
-        print("Reservation ID:",i[0])
-        print("Guest ID:",i[1])
-        print("Check-in Date:",i[3])
-        print("Check-out Date:",i[4],"\n")
+    if len(reservation)==0:
+        print("No Reservations")
+    else:
+        for i in reservation:
+            print("Room No:",i[2])
+            print("Reservation ID:",i[0])
+            print("Guest ID:",i[1])
+            print("Check-in Date:",i[3])
+            print("Check-out Date:",i[4],"\n")
 def generate_reports():
     count=0
     c=0
@@ -72,6 +76,7 @@ def generate_reports():
             c+=1
     print("Occupancy Rate:",count)
     print("Available Rooms:",c)
+    print("Revenue Generated:",revenue)
 def admin():
     name=input("Enter your username: ")
     pas=input("Enter your password: ")
@@ -99,11 +104,13 @@ def admin():
         print("Invalid username or password!\nTry again")
         admin()
 
+revenue=0
 reservation=[]
 r_id=1
 check=[]
 def check_in():
     l=[]
+    global revenue
     id=int(input("Enter the guest ID: "))
     val1=0
     for i in guests:
@@ -115,9 +122,10 @@ def check_in():
     no=int(input("Enter the room Number: "))
     val=0
     for i in rooms:
-        if i[0]==id:
+        if i[0]==no:
             val=1
             i[3]="occupied"
+            revenue=revenue+i[2]
     if val==0:
         print("Invalid Room number!")
         check_in()
@@ -155,8 +163,22 @@ def make_reservation():
     if val==0:
         print("No Rooms Available!")
     else:
-        g_details=input("Enter the guest id: ")
+        g_details=int(input("Enter the guest id: "))
+        val=0
+        for k in guests:
+            if k[0]==g_details:
+                val=1
+        if val==0:
+            print("Invalid Guest ID!\nTry again")
+            make_reservation()
         r_no=int(input("Enter the room no: "))
+        val=0
+        for k in rooms:
+            if k[0]==r_no:
+                val=1
+        if val==0:
+            print("Invalid Room Number!\nTry again")
+            make_reservation()
         for j in rooms:
             if j[0]==r_no:
                 j[3]="reserved"
@@ -178,11 +200,14 @@ def cancel_reservation():
         if i[0]==id and i[1]==guest_id:
             val=1
             for j in rooms:
+                # print("Rooms:",j)
                 if j[0]==i[2]:
-                    j[3]=="available"
+                    j[3]="available"
                     reservation.remove(i)
     if val==0:
         print("No Reservation found!")
+    else:
+        print("Reservation Cancelled....")
 def view_available_rooms():
     print("Available rooms:")
     val=0
@@ -196,13 +221,16 @@ def view_available_rooms():
     if val==0:
         print("No Rooms Available!")
 def view_guest_details():
-    print("Guest Details:")
-    for i in guests:
-        print("Guest ID:",i[0])
-        print("Name:",i[1])
-        print("Phone Number:",i[2])
-        print("Address:",i[3],"\n")
-        
+    if len(guests)==0:
+        print("No Guests Registered!")
+    else:
+        print("Guest Details:")
+        for i in guests:
+            print("Guest ID:",i[0])
+            print("Name:",i[1])
+            print("Phone Number:",i[2])
+            print("Address:",i[3],"\n")
+            
 
 
 def receptionist():
@@ -210,7 +238,7 @@ def receptionist():
     r_pas=input("Enter the password: ")
     if receptionist_details[0]==r_name and receptionist_details[1]==r_pas:
         while True:
-            print("Receptionist Menu:")
+            print("\nReceptionist Menu:")
             print("1.Check-in Guest\n2.Check-out Guest\n3.Make Reservation\n4.Cancel Reservation\n5.View Available Rooms\n6.View Guest Details\n7.Exit")
             ch1=int(input("Enter your choice: "))
             if ch1==1:
@@ -258,13 +286,16 @@ def register():
     l.append(pas)
     guests.append(l)
     g_id+=1
-
+    print("Successfully Registered...")
 
 
 def view_reservation_status(i):
     val=0
+    # print("i=",i)
+    # print("reservations:",reservation)
     for j in reservation:
-        if i[1]==j[0]:
+        if i[0]==j[1]:
+            # print("j=",j)
             val=1
             print("Current Reservation Status: Reserved")
             print("Check-in Date:",j[3])
@@ -287,8 +318,10 @@ def login():
     for i in guests:
         if i[4]==l_name and i[5]==l_pas:
             val=1
+            print("Logged in Successfully..")
+            print("Your Guest Id :",i[0])
             while True:
-                print("Guest Menu:")
+                print("\nGuest Menu:")
                 print("1.View Available Rooms\n2.Make a Reservation\n3.View Reservation Status\n4.Update Personal Information\n5.Cancel Reservation\n6.Exit")
                 ch1=int(input("Enter your choice: "))
                 if ch1==1:
@@ -341,3 +374,4 @@ while True:
         break
     else:
         print("Invalid Choice!")
+
