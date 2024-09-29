@@ -128,7 +128,7 @@ def check_in():
             revenue=revenue+i[2]
     if val==0:
         print("Invalid Room number!")
-        check_in()
+        receptionist()
     date=input("Enter the check-in date: ")
     l.append(id)
     l.append(no)
@@ -149,8 +149,8 @@ def check_out():
             check.remove(i)
     if val==0:
         print("Invalid guest id or room number!")
-        check_out()
-
+        receptionist()
+        
 def make_reservation():
     l=[]
     global r_id
@@ -159,7 +159,9 @@ def make_reservation():
     for i in rooms:
         if i[3]=="available":
             val=1
-            print(i[0])
+            print("Room no:",i[0])
+            print("Type: ",i[1])
+            print("Price: ",i[2])
     if val==0:
         print("No Rooms Available!")
     else:
@@ -170,28 +172,30 @@ def make_reservation():
                 val=1
         if val==0:
             print("Invalid Guest ID!\nTry again")
-            make_reservation()
-        r_no=int(input("Enter the room no: "))
-        val=0
-        for k in rooms:
-            if k[0]==r_no:
-                val=1
-        if val==0:
-            print("Invalid Room Number!\nTry again")
-            make_reservation()
-        for j in rooms:
-            if j[0]==r_no:
-                j[3]="reserved"
-        c_in=input("Enter check-in date: ")
-        c_out=input("Enter the check-out date ")
-        l.append(r_id)
-        l.append(g_details)
-        l.append(r_no)
-        l.append(c_in)
-        l.append(c_out)
-        reservation.append(l)
-        r_id+=1
-        print("Room Reserved....")
+            # make_reservation()
+        else:
+            r_no=int(input("Enter the room no: "))
+            val=0
+            for k in rooms:
+                if k[0]==r_no:
+                    val=1
+            if val==0:
+                print("Invalid Room Number!\nTry again")
+                # make_reservation()
+            else:
+                for j in rooms:
+                    if j[0]==r_no:
+                        j[3]="reserved"
+                c_in=input("Enter check-in date: ")
+                c_out=input("Enter the check-out date ")
+                l.append(r_id)
+                l.append(g_details)
+                l.append(r_no)
+                l.append(c_in)
+                l.append(c_out)
+                reservation.append(l)
+                r_id+=1
+                print("Room Reserved....")
 def cancel_reservation():
     id=int(input("Enter the reservation id: "))
     guest_id=int(input("Enter the guest id: "))
